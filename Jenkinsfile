@@ -3,9 +3,12 @@ node{
 	def GIT_COMMIT_HASH = ""
 	stage("checkout"){
 
-		checkout scm
-		GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
-		echo "$GIT_COMMIT_HASH"
+		def scmVars = checkout(scm)
+    // Essaie d’abord celles du plugin…
+    def sha = scmVars?.GIT_COMMIT
+    // …sinon fallback via git
+
+    echo "Commit SHA: ${sha}"
 }
 
 	stage("unit tests"){
