@@ -1,14 +1,15 @@
 node{
 
-	def GIT_COMMIT_HASH = ""
+	def COMMIT_HASH = ""
+
+	def COMMIT_MESSAGE = ""
+        echo "Commit Message: ${commitMessage}"
 	stage("checkout"){
 
 		def scmVars = checkout(scm)
-    // Essaie d’abord celles du plugin…
-    def sha = scmVars?.GIT_COMMIT
-    // …sinon fallback via git
-
-    echo "Commit SHA: ${sha}"
+   		COMMIT_MESSAGE = sh(script: "git log -1 --pretty=%B", returnStdout: true).trim()
+    	def COMMIT_HASH = scmVars?.GIT_COMMIT
+        echo "Commit SHA: ${COMMIT_HASH}, COMMIT MESSAGE : ${COMMIT_MESSAGE}"
 }
 
 	stage("unit tests"){
