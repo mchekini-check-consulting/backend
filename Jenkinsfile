@@ -6,6 +6,6 @@ node{
 	}
 
 	stage("build docker image"){
-		sh "docker build -t backend ."
+		sh "sudo docker build -t backend ."
 	}
 }
