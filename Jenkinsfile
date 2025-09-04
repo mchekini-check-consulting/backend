@@ -1,9 +1,11 @@
 node{
 
+	def GIT_COMMIT_HASH = ""
 	stage("checkout"){
 
 		checkout scm
-		echo "Commit SHA : ${env.GIT_COMMIT}"
+		GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
+		echo "$GIT_COMMIT_HASH"
 }
 
 	stage("unit tests"){
