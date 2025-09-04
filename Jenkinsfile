@@ -1,9 +1,10 @@
 node{
 
 	stage("checkout"){
-		echo "Commit SHA : ${env.GIT_COMMIT}"
+
 		checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mchekini-check-consulting/backend.git']])
-	}
+        echo "Commit SHA : ${env.GIT_COMMIT}"
+}
 
 	stage("unit tests"){
 		sh "./mvnw test"
