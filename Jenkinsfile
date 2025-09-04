@@ -1,13 +1,11 @@
-pipeline {
-	agent { label 'master' }
+node("master"){
 
-	stages {
-		stage("checkout"){
-			print "checkout stage"
-		}
 
-		stage("buid"){
-			print "build stage"
-		}
+	stage("checkout"){
+	   print "checkout stage"
+	}
+
+	stage("build"){
+		print "build stage"
 	}
 }
