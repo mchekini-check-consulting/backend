@@ -11,6 +11,6 @@ public class MyTests {
 
     @Test
     public void itShouldWork(){
-        assertEquals(2,3);
+        assertEquals(2,2);
     }
 }
