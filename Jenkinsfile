@@ -2,6 +2,7 @@ node{
 
 	def COMMIT_HASH = ""
     def COMMIT_MESSAGE = ""
+    def SKIP_CI = false
 
 	stage("checkout"){
 
@@ -12,10 +13,14 @@ node{
 
        if (COMMIT_MESSAGE.contains("[No CI]")) {
 			echo "Commit message contient [No CI] → on arrête la pipeline."
-            currentBuild.result = 'SUCCESS'
-            return
+			SKIP_CI = true
         }
-}
+    }
+
+    if (SKIP_CI) {
+		currentBuild.result = 'SUCCESS'
+        return
+    }
 
 	stage("unit tests"){
 		sh "./mvnw test"
