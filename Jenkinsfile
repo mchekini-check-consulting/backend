@@ -20,8 +20,8 @@ node{
 	node("int"){
 		stage("deploy"){
 			try {
-				sh "docker stop mchekini/backend:1.0"
-				sh "docker rm mchekini/backend:1.0"
+				sh "docker stop backend"
+				sh "docker rm backend"
 				sh "docker run --name backend -p 8080:8080 mchekini/backend:1.0"
 			}
 			catch(Exception e){
