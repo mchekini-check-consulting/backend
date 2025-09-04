@@ -8,7 +8,7 @@ node{
 
 		def scmVars = checkout(scm)
    		COMMIT_MESSAGE = sh(script: "git log -1 --pretty=%B", returnStdout: true).trim()
-    	def COMMIT_HASH = scmVars?.GIT_COMMIT
+    	COMMIT_HASH = scmVars?.GIT_COMMIT
         echo "Commit SHA: ${COMMIT_HASH}, COMMIT MESSAGE : ${COMMIT_MESSAGE}"
 }
 
