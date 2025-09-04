@@ -9,6 +9,12 @@ node{
    		COMMIT_MESSAGE = sh(script: "git log -1 --pretty=%B", returnStdout: true).trim()
     	COMMIT_HASH = scmVars?.GIT_COMMIT
         echo "Commit SHA: ${COMMIT_HASH}, COMMIT MESSAGE : ${COMMIT_MESSAGE}"
+
+       if (commitMessage.contains("[No CI]")) {
+			echo "Commit message contient [No CI] → on arrête la pipeline."
+            currentBuild.result = 'SUCCESS'
+            return
+        }
 }
 
 	stage("unit tests"){
