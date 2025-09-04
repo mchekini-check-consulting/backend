@@ -2,10 +2,10 @@ node{
 
 
 	stage("checkout"){
-	   print "checkout stage"
+		checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mchekini-check-consulting/backend.git']])
 	}
 
-	stage("build"){
-		print "build stage"
+	stage("build docker image"){
+		sh "docker build -t backend ."
 	}
 }
