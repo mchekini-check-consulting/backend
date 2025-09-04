@@ -9,6 +9,14 @@ node{
 		sh "./mvnw test"
 	}
 
+	stage("Quality Analyses"){
+		sh "./mvnw clean verify sonar:sonar \
+  				-Dsonar.projectKey=backend \
+  				-Dsonar.projectName='backend' \
+  				-Dsonar.host.url=http://13.37.213.251:9000 \
+  				-Dsonar.token=sqp_1a35d6529017cbe33b9b957eddddb5ee42ab8ef5"
+	}
+
 	stage("build docker image"){
 		sh "sudo docker build -t mchekini/backend:1.0 ."
 	}
