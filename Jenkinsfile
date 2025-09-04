@@ -14,6 +14,20 @@ node{
 			sh "sudo docker login -u $username -p $password"
 			sh "sudo docker push mchekini/backend:1.0"
 			sh "sudo docker rmi mchekini/backend:1.0"
-}
+       }
 	}
+
+	node("int"){
+		stage("deploy"){
+			try {
+				sh "docker stop mchekini/backend:1.0"
+				sh "docker rm mchekini/backend:1.0"
+				sh "docker run --name backend -p 8080:8080 mchekini/backend:1.0"
+			}
+			catch(Exception e){
+				sh "docker run --name backend -p 8080:8080 mchekini/backend:1.0"
+			}
+		}
+	}
+
 }
