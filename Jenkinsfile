@@ -1,9 +1,8 @@
 node{
 
 	def COMMIT_HASH = ""
+    def COMMIT_MESSAGE = ""
 
-	def COMMIT_MESSAGE = ""
-        echo "Commit Message: ${commitMessage}"
 	stage("checkout"){
 
 		def scmVars = checkout(scm)
