@@ -25,7 +25,7 @@ node{
 				sh "docker run --name backend -p 8080:8080 mchekini/backend:1.0"
 			}
 			catch(Exception e){
-				sh "docker run --name backend -p 8080:8080 mchekini/backend:1.0"
+				sh "docker run --name backend -p 8080:8080 -d mchekini/backend:1.0"
 			}
 		}
 	}
